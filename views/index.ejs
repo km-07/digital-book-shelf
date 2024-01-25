@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Books List | Khushal Mehrotra</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <style>
+      .internalContainer {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        justify-content: space-between;
+      }
+
+      p, input{
+        font-family: monospace;
+      }
+
+      h1, h2, h3{
+        font-family: sans-serif;
+        font-weight: bold;
+      }
+
+      #hidden{
+        display: none;
+        background-color: green;
+      }
+
+      img{
+        width: 180px;
+        height: 174px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container p-10 m-10">
+      <div class="p-10 m-10 internalContainer">
+        <h1>Khushal Mehrotra</h1>
+        <form>
+          <input type="submit" value="Head to editor pannel" onclick="showPrompt()" />
+        </form>
+
+        <form action="/editorsPanel" method="get">
+          <input type="submit" value="Click Here!" id="hidden"/>
+        </form>
+      </div>
+      <hr>
+      <h2>Books I have read:</h2>
+      <p>
+        Welcome to my diverse literary world! I'm Khushal Mehrotra, a passionate
+        reader from India, exploring a myriad of topics and authors on my book
+        review website. From the enchanting realms of fiction to the insightful
+        depths of non-fiction, I embark on literary journeys that captivate and
+        inspire. Join me as I navigate through the vast landscape of literature,
+        sharing my thoughts and recommendations on the books that have left an
+        indelible mark on my reading adventure. Whether you're a fellow book
+        enthusiast or a casual reader seeking your next literary escape, my
+        reviews aim to guide you through the rich tapestry of stories and ideas
+        that make the world of books so fascinating. Let's embark on this
+        literary exploration together!
+      </p>
+    </div>
+    <div class="container p-10 m-10 internalContainer">
+      <form action="/sortRating" method="get">
+        <input type="submit" value="Sort by Rating" />
+      </form>
+      <form action="/sortByDate" method="get">
+        <input type="submit" value="Sort by Recent Reads" />
+      </form>
+    </div>
+    <hr />
+    <% for( let index = 0; index < bookList.length; index++ ) { %>
+    <div class="container p-10 m-10 internalContainer">
+      <img
+        src="https://covers.openlibrary.org/b/isbn/<%= bookList[index].isbn %>-M.jpg"
+        alt="Your Image"
+        style="float: left; margin: 10px"
+      />
+      <div>
+        <h3><%= bookList[index].title %> by <%= bookList[index].author %></h3>
+        <p>Date: <b><em><%= bookList[index].readingdate.toLocaleDateString() %></em></b></p>
+        <p><%= bookList[index].description %></p>
+        <p>Rating: <b><em><%= bookList[index].rating %>/10</em></b></p>
+      </div>
+    </div>
+    <hr />
+    <% } %>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"></script>
+    <script>
+        function showPrompt() {
+          event.preventDefault();
+          var password = prompt("Enter the password:");
+          if (password === 'yourPassword') {
+            document.getElementById('hidden').style.display = 'block';
+          } else {
+              alert('Incorrect password. Please try again.');
+          }
+       }
+    </script>
+  </body> 
+</html>
