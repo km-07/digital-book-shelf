@@ -16,7 +16,7 @@ app.use(express.static("public"));
 // });
 
 //When using remote Postgres Db
-const db = new pg.Client(process.env.DB_LINK);
+const db = new pg.Client("postgres://khushal:WI4cU6tKB8KKB7uIItHIxUv2Dk62H471@dpg-cov2kvnsc6pc73aujodg-a.oregon-postgres.render.com/books_f3h4?ssl=true");
 db.connect();
 
 app.get("/", async (req, res) => {
